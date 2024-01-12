@@ -1131,7 +1131,7 @@ var Incremancer;
       setupLevel() {
          this.endLevelTimer = this.endLevelDelay, N(), this.particles.initialize(), this.humans.populate(), this.zombies.populate(), this.graveyard.initialize(), setTimeout(Z, 10), this.upgrades.applyUpgrades(), this.upgrades.updateRuneEffects(), this.partFactory.applyGenerators(), this.creatures.populate(), this.skeleton.populate(), this.addStartLevelResources(), this.populateStats()
       }
-      populateStats() {
+      populateStats() { //where the stats for each thing are stored 
          this.stats = {
             skeleton: {
                show: this.skeleton.persistent.skeletons > 0,
@@ -1145,12 +1145,12 @@ var Incremancer;
                speed: this.zombieSpeed
             },
             human: {
-               health: this.humans.getMaxHealth(this.level),
+               health: this.humans.getMaxHealth(this.level), //human health scales with the level
                damage: this.humans.attackDamage,
                speed: this.humans.maxRunSpeed
             },
             police: {
-               show: this.police.getMaxPolice() > 0,
+               show: this.police.getMaxPolice() > 0, /ammount of police and army is dependant on the level
                health: this.police.getMaxHealth(),
                damage: this.police.attackDamage,
                speed: this.police.maxRunSpeed
@@ -2296,7 +2296,7 @@ var Incremancer;
             e.alpha -= this.fadeSpeed * t, e.alpha < 0 && (e.visible = !1, g.removeChild(e))
          }
       }
-      changeState(e, t) {
+      changeState(e, t) { //where humans decide what to do
          switch (t) {
             case ce.standing:
                e.gotoAndStop(0), e.maxSpeed = this.maxWalkSpeed, e.timer.standing = this.randomSecondsToStand();
@@ -2451,7 +2451,7 @@ var Incremancer;
          }
          e.policeState = t
       }
-      radioForBackup(e) {
+      radioForBackup(e) { //where police call for backup with there radios
          let t = null,
             s = 2e3;
          for (let a = 0; a < this.police.length; a++)
@@ -2460,7 +2460,7 @@ var Incremancer;
                r < s && (t = this.police[a], s = r)
             } t && (t.zombieTarget = e.zombieTarget, this.exclamations.newRadio(e), this.exclamations.newRadio(t), e.radioTime = this.radioTime, t.radioTime = this.radioTime)
       }
-      updatePolice(e, t, s) {
+      updatePolice(e, t, s) { //recounts the ammout of alive police
          if (e.flags.dead) return this.humans.updateDeadHumanFading(e, t);
          switch (e.timer.attack -= t, e.timer.scan -= t, e.radioTime -= t, e.flags.infected && this.humans.updatePlague(e, t), e.flags.burning && this.humans.updateBurns(e, t), (!e.zombieTarget || e.zombieTarget.flags.dead) && e.timer.scan < 0 && (this.humans.scanForZombies(e, s), e.zombieTarget && !e.zombieTarget.flags.dead && e.radioTime < 0 && this.radioForBackup(e)), this.decideStateOnZombieDistance(e), e.policeState) {
             case ue.standing:
