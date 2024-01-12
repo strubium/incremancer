@@ -171,7 +171,7 @@ var Incremancer;
       }, x && (x.width = P.x, x.height = P.y), c.hitArea = new PIXI.Rectangle(0, 0, P.x, P.y)
    }
 
-   function O() {
+   function OnWindowSizeChange() {
       const e = document.body.clientWidth,
          t = document.body.clientHeight;
       D = {
@@ -180,8 +180,8 @@ var Incremancer;
          defaultScale: Math.max(e, t) / 1e3
       }, Y.scrollSpeed = Math.max(e, t) / 4
    }
-   new Map, window.onload = function () {
-      v = ne.getInstance(), S = new Qe, M = new Oe, k = new Ue, w = new Xe, T = new Ae, C = new Se, v.loadData(), v.onReady(), O(),
+   new Map, window.onload = function () { //where the map is created
+      v = ne.getInstance(), S = new Qe, M = new Oe, k = new Ue, w = new Xe, T = new Ae, C = new Se, v.loadData(), v.onReady(), OnWindowSizeChange(),
          function () {
             PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
             const e = new PIXI.Application({
@@ -213,7 +213,7 @@ var Incremancer;
             "hidden" == document.visibilityState ? v.hidden = !0 : v.hidden = !1
          }), !1)
    }, window.onresize = function () {
-      O()
+      OnWindowSizeChange()
    };
    const Y = {
       scrollSpeed: 200,
