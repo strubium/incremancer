@@ -1150,7 +1150,7 @@ var Incremancer;
                speed: this.humans.maxRunSpeed
             },
             police: {
-               show: this.police.getMaxPolice() > 0, /ammount of police and army is dependant on the level
+               show: this.police.getMaxPolice() > 0, //ammount of police and army is dependant on the level
                health: this.police.getMaxHealth(),
                damage: this.police.attackDamage,
                speed: this.police.maxRunSpeed
